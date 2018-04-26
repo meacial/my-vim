@@ -38,7 +38,7 @@ let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
 
-nnoremap <F3> :NERDTreeToggle<CR>
+"nnoremap <F3> :NERDTreeToggle<CR>
 
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
@@ -50,9 +50,9 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'https://github.com/bitc/vim-bad-whitespace'
 Plugin 'https://github.com/tomasr/molokai'
-Plugin 'easymotion/vim-easymotion' 
+Plugin 'easymotion/vim-easymotion'
 Plugin 'skywind3000/asyncrun.vim'
-Plugin 'sillybun/setbreakpoints_python' 
+Plugin 'sillybun/setbreakpoints_python'
 Plugin 'sillybun/autoformatpythonstatement'
 
 
@@ -66,8 +66,8 @@ filetype plugin indent on
 map <F5> :call CompileRunGcc()<CR>
 
 func! CompileRunGcc()
-	exec "w" 
-	if &filetype == 'c' 
+	exec "w"
+	if &filetype == 'c'
 		exec '!g++ % -o %<'
 		exec '!time ./%<'
 	elseif &filetype == 'cpp'
@@ -77,7 +77,7 @@ func! CompileRunGcc()
 	    	exec '!time python %'
        	elseif &filetype == 'sh'
             :!time bash %
-        endif                                                                              
+        endif
 endfunc
 
 set nofoldenable
@@ -135,7 +135,7 @@ let python_highlight_all=1
 au Filetype python set tabstop=4
 au Filetype python set softtabstop=4
 au Filetype python set shiftwidth=4
-au Filetype python set textwidth=79
+au Filetype python set textwidth=180
 au Filetype python set expandtab
 au Filetype python set autoindent
 au Filetype python set fileformat=unix
@@ -147,3 +147,22 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 "" for youcompleteme
 autocmd Filetype python,c,cpp,Java,vim nnoremap <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR> " 跳转到定义处
 let g:ycm_min_num_of_chars_for_completion=2
+
+set textwidth=200
+
+
+" for nerdtree
+autocmd vimenter * NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+map <F3> :NERDTreeToggle<CR>
+"nnoremap <F3> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+
+

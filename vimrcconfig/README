@@ -1,0 +1,15 @@
+##Issue:
+
+##### 1. nerdtree work problem
+> Error Info
+```"E117: Unknown function: strcharpart........"```
+> Solution: 
+```
+  remove the folder of the nerdtree in .vim/bundler
+  re pull the nerdtree source
+
+  git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
+
+  from:https://github.com/scrooloose/nerdtree
+
+```
